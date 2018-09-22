@@ -1,0 +1,29 @@
+目标：
+  实现Linux下计时(精确到纳秒)
+
+运行时:
+  1. 实例化该类
+  2. 调用start
+  3. 执行需要评估时间的函数
+  4. 调用stop
+  5. 调用相应的函数获取运行时间
+
+介绍：
+  index为计时器编号，此类允许同时存在多个计时器，
+  按index这个编号区分，start表示开始第index个的
+  计时器开始计时，当该计时器不存在会新建一个，
+  同理stop也接受index为参数，表示结束该编号的计时器
+
+  secsByPow：eps为幂，例：设该函数输出为A，eps为2，
+            index为0， 则表示第index个计时器对应的
+            时间为 A * 10^eps 秒，_collectTime同理
+            
+  seconds, millisecs, microsecs, nanosecs 都接受index
+           为参数，分别输出对应计时器的计时时长，
+           单位分别为 秒，毫秒，微秒，纳秒
+           
+  clear, clearAll 用于清理相应编号的计时器
+
+  _EXIST_BY_ERROR_: 该宏定义存在时，当访问非法计时器
+           // 时（如不存在），会抛出异常，若不存在，
+           则返回计时-1表明计时器不存在
